@@ -6,12 +6,22 @@ export const signup = async(signupData)=>{
 }
 
 export const getAuthUser = async ()=>{
-      const res = await axiosInstance.get("/auth/me");
-      return res.data;
+      try {
+            const res = await axiosInstance.get("/auth/me");
+            return res.data;
+      } catch (error) {
+            console.log("user is not authenticated",error);
+            return null;
+      }
     }
 
 export const login = async (logindata)=>{
       const res = await axiosInstance.post("/auth/login",logindata);
+      return res.data;
+    }
+
+export const logout = async ()=>{
+      const res = await axiosInstance.post("/auth/logout");
       return res.data;
     }
 

@@ -1,9 +1,9 @@
 import React from 'react'
 
-function HonePage() {
+function NotificationPage() {
   return (
-    <div>HonePage</div>
+    <div>NotificationPage</div>
   )
 }
 
-export default HonePage
+export default NotificationPage
