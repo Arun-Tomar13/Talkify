@@ -1,19 +1,19 @@
 import FriendRequest from "../models/friendRequest.model.js";
 import User from "../models/user.model.js";
 
-const getReccomendedUsers = async (req,res) =>{
+const getRecomendedUsers = async (req,res) =>{
     try {
         const currentUserid = req.user.id;
         const currentUser = req.user;
     
-        const reccommendedUsers = await User.find({
+        const recommendedUsers = await User.find({
             $and:[
                 {_id:{ $ne: currentUserid}},
                 {_id: {$nin:currentUser.friends}},
                 {isOnborded:true}
             ]
         })
-        res.status(200).json({reccommendedUsers});
+        res.status(200).json(recommendedUsers);
     } catch (error) {
         console.log(error);
         res.status(500).json({message:"Internal server error"});
@@ -54,7 +54,7 @@ const sendFriendRequest = async (req,res)=>{
         }
         // check if user already friends request is sent
 
-        const existingRequest = await FriendRequest.findById({
+        const existingRequest = await FriendRequest.findOne({
             $or:[
                 {sender:myId,recipient:recipientId},
                 {sender:recipientId,recipient:myId}
@@ -66,7 +66,7 @@ const sendFriendRequest = async (req,res)=>{
         }
 
         const friendRequest = await FriendRequest.create({
-            senser:myId,
+            sender:myId,
             recipient:recipientId
         });
 
@@ -94,12 +94,12 @@ const acceptFriendRequest = async (req,res) =>{
         //add each other to friends list
         await User.findByIdAndUpdate(
             friendRequest.sender,
-            {$addToSet:{firends:friendRequest.recipient}}
+            {$addToSet:{friends:friendRequest.recipient}}
         );
 
         await User.findByIdAndUpdate(
             friendRequest.recipient,
-            {$adddToSet:{friends:friendRequest.sender}}
+            {$addToSet:{friends:friendRequest.sender}}
         );
 
         res.status(200).json({message:"Friend request accepted"});
@@ -133,7 +133,7 @@ const getOutingFriendReqs = async(req,res)=>{
     try {
         const outgoingRequests = await FriendRequest.find({
             sender:req.user.id,
-            staus:"psnding"
+            status:"pending"
         }).populate("recipient","fullName profilePic nativeLang learningLang");
 
         res.status(200).json(outgoingRequests);
@@ -144,7 +144,7 @@ const getOutingFriendReqs = async(req,res)=>{
 }
 
 export {
-    getReccomendedUsers,
+    getRecomendedUsers,
     getMyFriends,
     sendFriendRequest,
     acceptFriendRequest,
