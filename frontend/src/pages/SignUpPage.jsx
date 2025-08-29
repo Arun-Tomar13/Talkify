@@ -1,5 +1,5 @@
 import React, { use, useState } from 'react'
-import { ShipWheelIcon } from 'lucide-react'
+import { Slack  } from 'lucide-react'
 import {Link} from 'react-router'
 import useSignup from '../hooks/useSignup';
 
@@ -21,14 +21,14 @@ function SignUpPage() {
   return (
     <div
       className="h-screen flex items-center justify-center p-4 sm:p-6 md:p-8"
-      data-theme="forest"
+      data-theme="dark"
     >
       <div className="border border-primary/25 flex flex-col lg:flex-row w-full max-w-5xl mx-auto bg-base-100 rounded-xl shadow-lg overflow-hidden">
         {/* SIGNUP FORM - LEFT SIDE */}
         <div className="w-full lg:w-1/2 p-4 sm:p-8 flex flex-col">
           {/* LOGO */}
           <div className="mb-4 flex items-center justify-start gap-2">
-            <ShipWheelIcon className="size-9 text-primary" />
+            <Slack  className="size-9 text-primary" />
             <span className="text-3xl font-bold font-mono bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary tracking-wider">
               Talkify
             </span>
@@ -59,7 +59,7 @@ function SignUpPage() {
                     </label>
                     <input
                       type="text"
-                      placeholder="John Doe"
+                      placeholder="Arun Tomar"
                       className="input input-bordered w-full"
                       value={signupData.fullName}
                       onChange={(e) => setSignupData({ ...signupData, fullName: e.target.value })}
@@ -73,7 +73,7 @@ function SignUpPage() {
                     </label>
                     <input
                       type="email"
-                      placeholder="john@gmail.com"
+                      placeholder="arun@gmail.com"
                       className="input input-bordered w-full"
                       value={signupData.email}
                       onChange={(e) => setSignupData({ ...signupData, email: e.target.value })}
