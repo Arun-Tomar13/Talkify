@@ -40,6 +40,7 @@ A comprehensive real-time messaging and video calling platform built with modern
 ## 📱 Application Screenshots
 
 ### Authentication Flow
+
 ![Login Screen](./preview/login.png)
 *Secure login interface with JWT authentication*
 
@@ -51,10 +52,10 @@ A comprehensive real-time messaging and video calling platform built with modern
 
 ### Main Application
 ![Home Dashboard 2](./preview/home1.png)
-*Main dashboard with navigation and user status*
+*Alternative home view with theme customization*
 
 ![Home Dashboard 1](./preview/home.png)
-*Alternative home view with theme customization*
+*Main dashboard with navigation and user status*
 
 
 ### Notifications System
@@ -79,7 +80,7 @@ A comprehensive real-time messaging and video calling platform built with modern
 *Group chat functionality with multimedia support*
 
 ### Video Communication
-![Video Call Interface](./preview/videocall.png)
+![Video Call Interface](./preview/Videocall.png)
 *Video calling with screen sharing and recording capabilities*
 
 ## ⚙️ Installation & Setup
