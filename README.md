@@ -62,9 +62,6 @@ A comprehensive real-time messaging and video calling platform built with modern
 ![Notification Panel 1](./preview/notification.png)
 *Real-time notification center with activity feed*
 
-![Notification Panel 2](./preview/notification2.png)
-*Detailed notification view with interaction options*
-
 ### Chat Features
 ![Chat Interface 1](./preview/chat2.png)
 *Real-time messaging with typing indicators and reactions*
