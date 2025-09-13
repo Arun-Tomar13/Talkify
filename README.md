@@ -48,7 +48,7 @@ A comprehensive real-time messaging and video calling platform built with modern
 *User registration with form validation*
 
 ![Onboarding](./preview/onboarded.png)
-*Initial setup *
+*Initial setup*
 
 ### Main Application
 ![Home Dashboard 2](./preview/Home1.png)
