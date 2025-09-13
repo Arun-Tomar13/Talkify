@@ -51,11 +51,11 @@ A comprehensive real-time messaging and video calling platform built with modern
 *Initial setup *
 
 ### Main Application
-![Home Dashboard 2](./preview/home1.png)
-*Alternative home view with theme customization*
-
-![Home Dashboard 1](./preview/home.png)
+![Home Dashboard 2](./preview/Home1.png)
 *Main dashboard with navigation and user status*
+
+![Home Dashboard 1](./preview/Home.png)
+*Alternative home view with theme customization*
 
 
 ### Notifications System
@@ -74,10 +74,10 @@ A comprehensive real-time messaging and video calling platform built with modern
 
 ### Search User Features
 ![Search Interface 1](./preview/searchUser.png)
-*Real-time messaging with typing indicators and reactions*
+*User can search other user using email id, and User can send request*
 
 ![Search Interface 2](./preview/searchUser1.png)
-*Group chat functionality with multimedia support*
+*while searching its shows u are friend of that user or not*
 
 ### Video Communication
 ![Video Call Interface](./preview/Videocall.png)
