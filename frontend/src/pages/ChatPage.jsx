@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import useAuthUser from "../hooks/useAuthUser";
-import { useQuery } from "@tanstack/react-query";
-import { getStreamToken } from "../lib/api.js";
-
+import { useQuery,useQueryClient } from "@tanstack/react-query";
+import { getStreamToken,getUserFriends } from "../lib/api.js";
+import { Link } from "react-router";
+import { getLanguageFlag } from "../components/FriendCard.jsx";
+import { useLocation } from "react-router";
 import {
   Channel,
   ChannelHeader,
@@ -18,6 +20,7 @@ import toast from "react-hot-toast";
 
 import ChatLoader from "../components/ChatLoader";
 import CallButton from "../components/CallButton";
+import { ArrowRight } from "lucide-react";
 
 const STREAM_API_KEY = import.meta.env.VITE_STREAM_API_KEY;
 
@@ -35,6 +38,16 @@ const ChatPage = () => {
     queryFn: getStreamToken,
     enabled: !!authUser, // this will run only when authUser is available
   });
+
+  const { data: friends = [], isLoading: loadingFriends } = useQuery({
+      queryKey: ["friends"],
+      queryFn: getUserFriends,
+    });
+
+  const location = useLocation();
+  const currentPath = location.pathname.slice(6);
+  
+  
 
   useEffect(() => {
     const initChat = async () => {
@@ -95,9 +108,39 @@ const ChatPage = () => {
   if (loading || !chatClient || !channel) return <ChatLoader />;
 
   return (
-    <div className="h-[99vh]">
+    <div className="h-[91vh] flex">
       <Chat client={chatClient}>
         <Channel channel={channel}>
+
+          {/* Sidebar for friends */}
+          <div className="w-2/6 gap-0.5 bg-transparent/20 overflow-y-auto flex flex-col justify-start align-middle flex-wrap">
+            <h1 className="m-3 pl-7 text-xl">Friends</h1>
+            {friends.map((friends)=>(
+              <Link to={`/chat/${friends._id}`} key={friends._id} className={` flex flex-col gap-1 py-0.5 rounded-xl cursor-pointer  ${currentPath==friends._id ? "bg-gradient-to-br from-primary/40 to-secondary/40" : "bg-gradient-to-br from-primary/70 to-secondary/70"} `}>
+                <div className=" flex gap-5 mt-0.5 lg:mx-10 flex-wrap">
+                  <img src={friends.profilePic} alt="" className="w-7"/>
+                  <p className="font-medium">{friends.fullName}</p>
+                </div>
+                <div className="flex flex-wrap gap-1.5 pl-7">
+                  <span className="badge badge-primary text-xs">
+                    {getLanguageFlag(friends.nativeLang)}
+                     {friends.nativeLang}
+                  </span>
+                  <ArrowRight/>
+                  <span className="badge badge-secondary text-xs">
+                    {getLanguageFlag(friends.learningLang)}
+                    {friends.learningLang}
+                  </span>
+        </div>
+                <div>
+
+                </div>
+                
+              </Link>
+            ))}
+          </div>
+
+          {/* chats */}
           <div className="w-full relative">
             <CallButton handleVideoCall={handleVideoCall} />
             <Window>

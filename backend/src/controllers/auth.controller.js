@@ -107,14 +107,12 @@ const login = async (req,res)=>{
         .status(200)
         .cookie("jwt",token,options)
         .json({succes:true,user,message: "userloggedin successfully"});
-    } catch (error) {
-        console.log("error in login controller",error);
-        res.status(500).json({
-            message:error.message || "Internal server error"
-        })
-        
-    }
-}
+    }  catch (error) {
+  console.error("Error in sendFriendRequest controller", error);
+  return res
+    .status(error.statusCode || 500)
+    .json({ message: error.message || "Internal server error" });
+}}
 
 const logout =  async (req,res)=>{
     res

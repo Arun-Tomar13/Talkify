@@ -1,11 +1,19 @@
 import { Link, useLocation } from "react-router";
 import useAuthUser from "../hooks/useAuthUser";
-import { BellIcon, HomeIcon, Slack , UsersIcon } from "lucide-react";
+import { BellIcon, HomeIcon, Slack , UsersIcon,UserSearch  } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import {getUserFriends } from "../lib/api.js";
+import { LoadingIndicator } from "@stream-io/video-react-sdk";
 
 const Sidebar = () => {
   const { authUser } = useAuthUser();
   const location = useLocation();
   const currentPath = location.pathname;
+
+    const { data: friends = [], isLoading: loadingFriends } = useQuery({
+      queryKey: ["friends"],
+      queryFn: getUserFriends,
+    });
 
   return (
     <aside className="w-64 bg-base-200 border-r border-base-300 hidden lg:flex flex-col h-screen sticky top-0">
@@ -29,15 +37,18 @@ const Sidebar = () => {
           <span>Home</span>
         </Link>
 
-        <Link
-          to="/add-friends"
+        {loadingFriends ? (
+          <LoadingIndicator/>
+        ) : 
+        ( friends.length>0 && <Link
+          to={`/chat/${friends[0]._id}`}
           className={`btn btn-ghost justify-start w-full gap-3 px-4 rounded-3xl normal-case ${
             currentPath === "/friends" ? "btn-active" : ""
           }`}
         >
           <UsersIcon className="size-5 text-base-content opacity-70" />
-          <span>Search friend</span>
-        </Link>
+          <span> chat with friends</span>
+        </Link>)}
 
         <Link
           to="/notifications"
@@ -47,6 +58,16 @@ const Sidebar = () => {
         >
           <BellIcon className="size-5 text-base-content opacity-70" />
           <span>Notifications</span>
+        </Link>
+
+        <Link
+          to="/search-user"
+          className={`btn btn-ghost justify-start w-full gap-3 px-4 rounded-3xl normal-case ${
+            currentPath === "/search-user" ? "btn-active" : ""
+          }`}
+        >
+          <UserSearch  className="size-5 text-base-content opacity-70" />
+          <span>search user</span>
         </Link>
       </nav>
 

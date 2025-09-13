@@ -51,10 +51,10 @@ A comprehensive real-time messaging and video calling platform built with modern
 
 ### Main Application
 ![Home Dashboard 2](./preview/home1.png)
-*Alternative home view with theme customization*
+*Main dashboard with navigation and user status*
 
 ![Home Dashboard 1](./preview/home.png)
-*Main dashboard with navigation and user status*
+*Alternative home view with theme customization*
 
 
 ### Notifications System
@@ -69,6 +69,13 @@ A comprehensive real-time messaging and video calling platform built with modern
 *Real-time messaging with typing indicators and reactions*
 
 ![Chat Interface 2](./preview/chat.png)
+*Real-time messaging with theme change functionality*
+
+### Search User Features
+![Search Interface 1](./preview/searchUser.png)
+*Real-time messaging with typing indicators and reactions*
+
+![Search Interface 2](./preview/searchUser1.png)
 *Group chat functionality with multimedia support*
 
 ### Video Communication

@@ -11,6 +11,7 @@ import PageLoader from "./components/PageLoader.jsx";
 import useAuthUser from "./hooks/useAuthUser.js";
 import Layout from "./components/Layout.jsx";
 import { useThemeStore } from "./store/useThemeStore.js";
+import SearchUser from "./pages/SearchUser.jsx";
 
 
 function App() {
@@ -45,6 +46,14 @@ function App() {
          (
           <Layout showSidebar={false}>
             <ChatPage/>
+          </Layout>
+          ) :
+           (<Navigate to={!isAuthenticated ? "/login" : "/onboarding"}/>)} />
+
+        <Route path="/search-user" element={isAuthenticated && isOnboarded ?
+         (
+          <Layout showSidebar={true}>
+            <SearchUser/>
           </Layout>
           ) :
            (<Navigate to={!isAuthenticated ? "/login" : "/onboarding"}/>)} />

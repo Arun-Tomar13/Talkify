@@ -19,8 +19,8 @@ export const getAuthUser = async () => {
     const res = await axiosInstance.get("/auth/me");
     return res.data;
   } catch (error) {
-    console.log("Error in getAuthUser:", error);
-    return null;
+    // console.log("Error in getAuthUser:", error);
+    return error;
   }
 };
 
@@ -56,6 +56,11 @@ export async function getFriendRequests() {
 
 export async function acceptFriendRequest(requestId) {
   const response = await axiosInstance.put(`/users/friend-request/${requestId}/accept`);
+  return response.data;
+}
+
+export const searchUser = async (email) => {
+  const response = await axiosInstance.post("/users/search-user",{email});
   return response.data;
 }
 
